@@ -27,16 +27,16 @@ if var.videoset == true
 end
 
 %main loop
-tic
+% tic
 for i = 1:var.iter
-    %Beta = GD(Beta,var,i);
-    %Beta = NW(Beta,i);
+    Beta = GD(Beta,var,i);
+    Beta = NW(Beta,i);
     Beta = GN(Beta,i);
-    %[Beta,var] = LM(Beta,i,var);
-    %[Beta,var] = DL(Beta,i,var);
-    % anime(pic,i,ax2,Beta)
-    % drawnow;
-    % vidoe record start
+    [Beta,var] = LM(Beta,i,var);
+    [Beta,var] = DL(Beta,i,var);
+    anime(pic,i,ax2,Beta)
+    drawnow;
+    vidoe record start
     if var.videoset == true
         frame = getframe(fig);
         writeVideo(video,frame);
@@ -45,7 +45,7 @@ for i = 1:var.iter
         break
     end
 end
-toc
+% toc
 % vidoe record end
 if var.videoset == true
     close(video);
